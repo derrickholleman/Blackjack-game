@@ -1,0 +1,78 @@
+body {
+    font-family: 'Trebuchet MS', 'sans-serif';
+    background-color: rgb(15, 117, 15);
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+h1 {
+    color: goldenrod;
+    font-size: 3rem;
+    margin: 3rem 0rem;
+}
+
+#message-el {
+    font-size: 1.75rem;
+    font-style: italic;
+}
+
+.cards-sum {
+    font-size: 1.25rem;
+}
+
+.btns {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#start-btn {
+    color: rgb(12, 88, 12);
+    background-color: goldenrod;
+    border: none;
+    font-weight: bold;
+    font-size: 1.75rem;
+    border-radius: 3px;
+    padding: .5rem 0rem;
+    width: 15rem;
+    margin-top: 2rem;
+    cursor: pointer;
+    box-shadow: 0px 3px 4px 1px rgba(0, 0, 0, .3);
+}
+#start-btn:active {
+    transform: scale(.98);
+}
+#newCard-btn {
+    color: rgb(12, 88, 12);
+    background-color: goldenrod;
+    border: none;
+    font-weight: bold;
+    font-size: 1.75rem;
+    border-radius: 3px;
+    padding: .5rem 0rem;
+    width: 15rem;
+    margin-top: 2rem;
+    cursor: pointer;
+    box-shadow: 0px 3px 4px 1px rgba(0, 0, 0, .3);
+}
+#newCard-btn:active {
+    transform: scale(.98);
+}
+#reset-btn {
+    color: rgb(255, 255, 255);
+    background-color: rgb(163, 34, 17);
+    border: none;
+    font-weight: bold;
+    font-size: 1.75rem;
+    border-radius: 3px;
+    padding: .5rem 0rem;
+    width: 10rem;
+    margin: 2rem auto;
+    cursor: pointer;
+    box-shadow: 0px 3px 4px 1px rgba(0, 0, 0, .3);
+}
+#reset-btn:active {
+    transform: scale(.98);
+}

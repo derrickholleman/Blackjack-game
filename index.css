@@ -106,7 +106,9 @@ h1 {
 }
 
 .ace-btns {
-    margin: -2rem auto;
+    display: flex;
+    justify-content: center;
+    height: fit-content;
 }
 
 #ace1 {
@@ -118,12 +120,16 @@ h1 {
     border-radius: 3px;
     padding: .5rem 0rem;
     width: 5rem;
-    margin: 2rem 1rem;
+    margin: 0 1rem;
     cursor: pointer;
     box-shadow: 0px 3px 4px 1px rgba(0, 0, 0, .3);
+    display: none;
 }
 #ace1:active {
     transform: scale(.98);
+}
+#ace1.show {
+    display: block;
 }
 #ace11 {
     color: rgb(255, 255, 255);
@@ -134,10 +140,14 @@ h1 {
     border-radius: 3px;
     padding: .5rem 0rem;
     width: 5rem;
-    margin: 2rem 1rem;
+    margin: 0 1rem;
     cursor: pointer;
     box-shadow: 0px 3px 4px 1px rgba(0, 0, 0, .3);
+    display: none;
 }
 #ace11:active {
     transform: scale(.98);
+}
+#ace11.show {
+    display: block;
 }

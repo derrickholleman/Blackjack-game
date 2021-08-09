@@ -103,12 +103,16 @@ function getNewCard() {
         message.textContent = "You drew an Ace!  Please specify if you'd like a 1 or an 11"
         document.getElementById('ace1').disabled = false
         document.getElementById('ace11').disabled = false
+        document.getElementById('ace1').classList.add('show')
+        document.getElementById('ace11').classList.add('show')
         document.getElementById('newCard-btn').disabled = true
         document.getElementById('start-btn').disabled = true
     } else if (sum <= 20 && newCard === 11) {
         message.textContent = "You drew an Ace!  Please specify if you'd like a 1 or an 11"
         document.getElementById('ace11').disabled = false
         document.getElementById('ace1').disabled = false
+        document.getElementById('ace1').classList.add('show')
+        document.getElementById('ace11').classList.add('show')
         document.getElementById('newCard-btn').disabled = true
         document.getElementById('start-btn').disabled = true
     } else {
@@ -164,4 +168,7 @@ function resetGame() {
 
     // disable stand button directly after reset 
     document.getElementById('stand-btn').disabled = true
+
+    document.getElementById('ace1').classList.remove('show')
+    document.getElementById('ace11').classList.remove('show')
 }

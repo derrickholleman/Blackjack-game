@@ -8,21 +8,24 @@ body {
 
 h1 {
     color: goldenrod;
-    font-size: 3rem;
+    font-size: clamp(4rem, 10vw, 5rem);
     margin: 3rem 0rem 2rem 0rem;
 }
 
 #message-el {
-    font-size: 1.75rem;
+    font-size: clamp(2rem, 4.5vw, 3rem);
     font-style: italic;
 }
 
 #player-el {
-    font-size: 1.75rem;
+    font-size: clamp(2rem, 3vw, 2rem);
+    position: absolute;
+    top: -1.8rem;
+    right: 5%;
 }
 
 .info-section {
-    font-size: 1.25rem;
+    font-size: clamp(1.5rem, 4vw, 2.5rem)
 }
 
 .new-stand > button {
@@ -41,7 +44,7 @@ h1 {
     background-color: goldenrod;
     border: none;
     font-weight: bold;
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
     border-radius: 3px;
     padding: .5rem 0rem;
     width: 15rem;
@@ -57,7 +60,7 @@ h1 {
     background-color: goldenrod;
     border: none;
     font-weight: bold;
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
     border-radius: 3px;
     padding: .5rem 0rem;
     width: 12rem;
@@ -73,7 +76,7 @@ h1 {
     background-color: goldenrod;
     border: none;
     font-weight: bold;
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
     border-radius: 3px;
     padding: .5rem 0rem;
     width: 12rem;
@@ -88,7 +91,7 @@ h1 {
     background-color: rgb(163, 34, 17);
     border: none;
     font-weight: bold;
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
     border-radius: 3px;
     padding: .5rem 0rem;
     width: 10rem;
@@ -109,7 +112,7 @@ h1 {
     background-color: rgb(5, 3, 2);
     border: none;
     font-weight: bold;
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
     border-radius: 3px;
     padding: .5rem 0rem;
     width: 5rem;
@@ -125,7 +128,7 @@ h1 {
     background-color: rgb(5, 3, 2);
     border: none;
     font-weight: bold;
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
     border-radius: 3px;
     padding: .5rem 0rem;
     width: 5rem;

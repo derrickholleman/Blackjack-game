@@ -47,28 +47,44 @@ function startGame() {
     }
 
     renderGame()
+    getPoints()
 }
 function stand() {
     document.getElementById('reset-btn').disabled = false
     if (playerTotal > dealerTotal && playerTotal < 21 && dealerTotal !== 21) {
-        message.textContent = "Good call! Press 'Reset' to play again"
+        message.textContent = "Good call! Press 'Next Round' to play again"
         didWin = true
     } else if (playerTotal < 21 && dealerTotal > 21) {
-        message.textContent = "You win! Press 'Reset' to play again"
+        message.textContent = "You win! Press 'Next Round' to play again"
         didWin = true
     } else if (playerTotal === dealerTotal) {
-        message.textContent = "It's a tie! Press 'Reset' to play again"
+        message.textContent = "It's a tie! Press 'Next Round' to play again"
         didWin = null
     } else if (dealerTotal === 21) {
         message.textContent = 'Dealer got 21, you lose!'
         didWin = false
     }
     else {
-        message.textContent = "Oh no!  You lost. Press 'Reset' to play again"
+        message.textContent = "Oh no!  You lost. Press 'Next Round' to play again"
         didWin = false
     }
     displayDealerTotal.textContent = `Dealer Total: ${dealerTotal}`
     document.getElementById('newCard-btn').disabled = true
+
+    getPoints()
+}
+
+function getPoints() {
+    if (didWin === true) {
+        playerEl.textContent = `${player.name}: $${player.chips += 50}`
+        document.getElementById('player-el').classList.add('shake')
+        // reset win boolean
+        didWin = null
+    } else if (didWin === false) {
+        playerEl.textContent = `${player.name}: $${player.chips -= 50}`
+        document.getElementById('player-el').classList.add('shake')
+        didWin = null
+    }
 }
 
 function renderGame() {
@@ -79,13 +95,13 @@ function renderGame() {
         document.getElementById('newCard-btn').disabled = false
         document.getElementById('start-btn').disabled = true
     } else if (playerTotal === 21) {
-        message.textContent = "You win! Press 'Reset' to play again"
+        message.textContent = "You win! Press 'Next Round' to play again"
         document.getElementById('newCard-btn').disabled = true
         document.getElementById('stand-btn').disabled = true
         document.getElementById('reset-btn').disabled = false
         didWin = true
     } else {
-        message.textContent = "You're out of the game! Press 'Reset' to play again"
+        message.textContent = "You're out of the game! Press 'Next Round' to play again"
         didWin = false
         document.getElementById('newCard-btn').disabled = true
         document.getElementById('stand-btn').disabled = true
@@ -125,6 +141,7 @@ function getNewCard() {
         // add card to card array
         cardHolder.push(newCard)
         renderGame()
+        getPoints()
     }
 }
 
@@ -136,6 +153,7 @@ function aceEquals1() {
     document.getElementById('ace11').classList.remove('show')
 
     renderGame()
+    getPoints()
 }
 function aceEquals11() {
     playerTotal += 11
@@ -144,18 +162,10 @@ function aceEquals11() {
     document.getElementById('ace11').classList.remove('show')
 
     renderGame()
+    getPoints()
 }
 
 function resetGame() {
-    // give new point total on reset click
-    if (didWin === true) {
-        playerEl.textContent = `${player.name}: $${player.chips += 50}`
-        // reset win boolean
-        didWin = null
-    } else if (didWin === false) {
-        playerEl.textContent = `${player.name}: $${player.chips -= 50}`
-        didWin = null
-    }
 
     // reset text
     displayPlayerTotal.textContent = `Your total: `
@@ -178,6 +188,10 @@ function resetGame() {
 
     // disable stand button directly after reset 
     document.getElementById('stand-btn').disabled = true
+
+    // remove classes
+
+    document.getElementById('player-el').classList.remove('shake')
 
     document.getElementById('ace1').classList.remove('show')
     document.getElementById('ace11').classList.remove('show')

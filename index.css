@@ -9,14 +9,21 @@ body {
 h1 {
     color: goldenrod;
     font-size: clamp(2rem, 10vw, 5rem);
-    margin: 3rem 0rem 1rem 0rem;
+    margin: 2.5rem 0rem 0rem 0rem;
 }
 
 #message-el {
     font-size: clamp(1.25rem, 3vw, 2rem);
     font-style: italic;
     max-width: 80%;
+    min-height: 52px;
     margin: 1rem auto;
+}
+
+@media screen and (max-width: 481px) {
+    #message-el {
+        min-height: 69px;
+    }
 }
 
 #player-el {
@@ -25,6 +32,41 @@ h1 {
     top: -1rem;
     right: 5%;
 }
+#player-el.shake {
+  animation-name: hvr-wobble-horizontal;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  transform: perspective(1px) translateZ(0);
+  vertical-align: middle;
+}
+
+@keyframes hvr-wobble-horizontal {
+    16.65% {
+      -webkit-transform: translateX(8px);
+      transform: translateX(8px);
+    }
+    33.3% {
+      -webkit-transform: translateX(-6px);
+      transform: translateX(-6px);
+    }
+    49.95% {
+      -webkit-transform: translateX(4px);
+      transform: translateX(4px);
+    }
+    66.6% {
+      -webkit-transform: translateX(-2px);
+      transform: translateX(-2px);
+    }
+    83.25% {
+      -webkit-transform: translateX(1px);
+      transform: translateX(1px);
+    }
+    100% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  }
 
 .info-section {
     font-size: clamp(1.15rem, 2vw, 1.4rem)
@@ -65,7 +107,7 @@ h1 {
     font-size: clamp(1rem, 2vw, 1.5rem);
     border-radius: 3px;
     padding: .5rem 0rem;
-    width: 12rem;
+    width: 10rem;
     margin-top: 2rem;
     cursor: pointer;
     box-shadow: 0px 3px 4px 1px rgba(0, 0, 0, .3);
@@ -81,7 +123,7 @@ h1 {
     font-size: clamp(1rem, 2vw, 1.5rem);
     border-radius: 3px;
     padding: .5rem 0rem;
-    width: 12rem;
+    width: 10rem;
     cursor: pointer;
     box-shadow: 0px 3px 4px 1px rgba(0, 0, 0, .3);
 }
@@ -109,6 +151,7 @@ h1 {
     display: flex;
     justify-content: center;
     height: fit-content;
+    margin-top: .5rem;
 }
 
 #ace1 {

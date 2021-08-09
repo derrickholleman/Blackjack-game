@@ -38,6 +38,7 @@ document.getElementById('reset-btn').disabled = true
 
 function startGame() {
     document.getElementById('stand-btn').disabled = false
+    document.getElementById('reset-btn').disabled = true
     renderGame()
 }
 function stand() {
@@ -94,6 +95,7 @@ function renderGame() {
 }
 
 function getNewCard() {
+    document.getElementById('reset-btn').disabled = false
     // draw new card with random number
     let newCard = Math.floor(Math.random() * (11 - 2 + 1) + 2)
 

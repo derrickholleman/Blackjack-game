@@ -1,18 +1,19 @@
-// player info
-// LOAD PLAYER DATA
+// init player variable
 let player;
-let result = JSON.parse(localStorage.getItem("playerInfo"));
-if (result.chips === 500) {
+
+// LOAD PLAYER DATA
+player = JSON.parse(localStorage.getItem("playerInfo"));
+
+// if no player data, set default player data
+if (!player) {
   player = {
     name: "Player 1",
     chips: 500,
   };
-} else {
-  player = JSON.parse(localStorage.getItem("playerInfo"));
 }
 
 function newGame() {
-  let player = {
+  player = {
     name: "Player 1",
     chips: 500,
   };

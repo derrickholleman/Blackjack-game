@@ -1,30 +1,25 @@
+// get user name from url params
+const user = window.location.search.split("=")[1];
 // init player variable
 let player;
 
 // LOAD PLAYER DATA each render
 player = JSON.parse(localStorage.getItem("playerInfo"));
 
-// if no player data, set default player data
-if (!player) {
-  player = {
-    name: "Player 1",
-    chips: 500,
-  };
-}
-
 function newGame() {
   player = {
-    name: "Player 1",
+    name: user,
     chips: 500,
   };
   resetGame();
   getPoints();
-  newGameBtn.classList.remove('show')
-  playerEl.textContent = `Player 1: $${player.chips}`
+  localStorage.clear();
+  newGameBtn.classList.remove("show");
+  playerEl.textContent = `${player.name}: $${player.chips}`;
 }
 
 let playerEl = document.getElementById("player-el");
-playerEl.textContent = `${player.name}: $${player.chips}`;
+playerEl.textContent = `${user}: $${player.chips}`;
 
 // get random numbers for player cards
 function getRandomCard() {
@@ -56,6 +51,11 @@ document.getElementById("stand-btn").disabled = true;
 document.getElementById("reset-btn").disabled = true;
 
 function startGame() {
+  // set default info
+  player = {
+    name: user,
+    chips: 500,
+  };
   document.getElementById("start-btn").classList.add("clicked");
   document.getElementById("player-el").classList.add("show");
 
@@ -101,7 +101,7 @@ function stand() {
     } else {
       message.textContent = "Out of money!  Want to play again?";
       didWin = false;
-      document.getElementById("reset-btn").disabled = true
+      document.getElementById("reset-btn").disabled = true;
       newGameBtn.classList.add("show");
     }
   }
@@ -239,7 +239,6 @@ function resetGame() {
 
   document.getElementById("ace1").classList.remove("show");
   document.getElementById("ace11").classList.remove("show");
-
   renderGame();
   getPoints();
 }

@@ -19,11 +19,11 @@ input {
   display: block;
   width: 50%;
   margin: 1rem auto;
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 3px;
   border: 2px solid black;
 }
-input:hover{
+input:hover {
   border-color: goldenrod;
 }
 

@@ -51,7 +51,7 @@ document.getElementById("stand-btn").disabled = true;
 document.getElementById("reset-btn").disabled = true;
 
 function startGame() {
-  // set default info
+  // set default player info
   player = {
     name: user,
     chips: 500,
@@ -74,7 +74,7 @@ function getPoints() {
     didWin = null;
   }
 
-  // SAVE GAME on points update
+  // SAVE PLAYER INFO on points update
   localStorage.setItem("playerInfo", JSON.stringify(player));
 }
 
@@ -99,6 +99,7 @@ function stand() {
         "Oh no!  You lost. Press 'Next Round' to play again";
       didWin = false;
     } else {
+      // LOGIC FOR NEW GAME START
       message.textContent = "Out of money!  Want to play again?";
       didWin = false;
       document.getElementById("reset-btn").disabled = true;

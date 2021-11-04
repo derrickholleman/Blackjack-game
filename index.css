@@ -9,7 +9,6 @@ body {
 h1 {
     color: goldenrod;
     font-size: clamp(2rem, 10vw, 5rem);
-    margin: 2.5rem 0rem 0rem 0rem;
 }
 
 #message-el {

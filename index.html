@@ -36,7 +36,8 @@
 
     <script>
       function getUser(user) {
-        window.location.href = `game.html?user=${user}`;
+        // set URL to get variable from on next page.  regex for removing spaces
+        window.location.href = `game.html?user=${user.replace(/ /g, '')}`;
       }
     </script>
   </body>

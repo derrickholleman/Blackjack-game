@@ -51,11 +51,8 @@ document.getElementById("stand-btn").disabled = true;
 document.getElementById("reset-btn").disabled = true;
 
 function startGame() {
-  // set default player info
-  player = {
-    name: user,
-    chips: 500,
-  };
+  // set player name from URL
+  player.name = user
   document.getElementById("start-btn").classList.add("clicked");
   document.getElementById("player-el").classList.add("show");
 

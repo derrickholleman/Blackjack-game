@@ -1,7 +1,7 @@
 // init player variable
 let player;
 
-// LOAD PLAYER DATA
+// LOAD PLAYER DATA each render
 player = JSON.parse(localStorage.getItem("playerInfo"));
 
 // if no player data, set default player data
@@ -17,6 +17,10 @@ function newGame() {
     name: "Player 1",
     chips: 500,
   };
+  resetGame();
+  getPoints();
+  newGameBtn.classList.remove('show')
+  playerEl.textContent = `Player 1: $${player.chips}`
 }
 
 let playerEl = document.getElementById("player-el");
@@ -44,6 +48,7 @@ let message = document.getElementById("message-el");
 let displayPlayerTotal = document.getElementById("sum-el");
 let displayCards = document.getElementById("cards-el");
 let displayDealerTotal = document.getElementById("dealer-el");
+let newGameBtn = document.getElementById("newGame-btn");
 // set default disabled state for buttons
 document.getElementById("start-btn").disabled = false;
 document.getElementById("newCard-btn").disabled = true;
@@ -89,8 +94,16 @@ function stand() {
       "Dealer got 21, you lose! Press 'Next Round' to play again";
     didWin = false;
   } else {
-    message.textContent = "Oh no!  You lost. Press 'Next Round' to play again";
-    didWin = false;
+    if (player.chips > 0) {
+      message.textContent =
+        "Oh no!  You lost. Press 'Next Round' to play again";
+      didWin = false;
+    } else {
+      message.textContent = "Out of money!  Want to play again?";
+      didWin = false;
+      document.getElementById("reset-btn").disabled = true
+      newGameBtn.classList.add("show");
+    }
   }
   displayDealerTotal.textContent = `Dealer Total: ${dealerTotal}`;
   document.getElementById("newCard-btn").disabled = true;
@@ -222,7 +235,6 @@ function resetGame() {
   document.getElementById("stand-btn").disabled = true;
 
   // remove classes
-
   document.getElementById("player-el").classList.remove("shake");
 
   document.getElementById("ace1").classList.remove("show");

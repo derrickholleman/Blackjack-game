@@ -2,6 +2,8 @@
 const user = window.location.search.split("=")[1];
 // init player variable
 let player;
+// set win boolean
+let didWin = null;
 
 // LOAD PLAYER DATA each render
 player = JSON.parse(localStorage.getItem("playerInfo"));
@@ -12,8 +14,7 @@ function newGame() {
     chips: 500,
   };
   resetGame();
-  getPoints();
-  localStorage.clear();
+  startGame()
   newGameBtn.classList.remove("show");
   playerEl.textContent = `${player.name}: $${player.chips}`;
 }
@@ -36,9 +37,6 @@ let playerTotal = cardHolder.reduce((a, b) => a + b);
 let dealerCards = [getRandomCard(), getRandomCard(), getRandomCard()];
 let dealerTotal = dealerCards.reduce((a, b) => a + b);
 
-// set win boolean
-let didWin = null;
-
 let message = document.getElementById("message-el");
 let displayPlayerTotal = document.getElementById("sum-el");
 let displayCards = document.getElementById("cards-el");
@@ -52,11 +50,21 @@ document.getElementById("reset-btn").disabled = true;
 
 function startGame() {
   // set player name from URL
-  player.name = user
-  document.getElementById("start-btn").classList.add("clicked");
-  document.getElementById("player-el").classList.add("show");
+  player.name = user;
 
-  renderGame();
+  if (player.chips < 0) {
+    // if player refreshes the page on new game screen
+    message.textContent = "Out of money!  Want to play again?";
+    document.getElementById("reset-btn").disabled = true;
+    document.getElementById("newCard-btn").disabled = true;
+    document.getElementById("stand-btn").disabled = true;
+    newGameBtn.classList.add("show");
+  } else {
+    document.getElementById("start-btn").classList.add("clicked");
+    document.getElementById("player-el").classList.add("show");
+
+    renderGame();
+  }
 }
 
 function getPoints() {

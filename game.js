@@ -54,7 +54,7 @@ function startGame() {
 
   if (player.chips < 0) {
     // if player refreshes the page on new game screen
-    message.textContent = "Out of money!  Want to play again?";
+    message.textContent = "Out of money!  Click 'New Game' to play again!" ;
     document.getElementById("reset-btn").disabled = true;
     document.getElementById("newCard-btn").disabled = true;
     document.getElementById("stand-btn").disabled = true;

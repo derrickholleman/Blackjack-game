@@ -1,22 +1,20 @@
 // get user name from url params
 const user = window.location.search.split("=")[1];
 // init player variable
-let player;
+let player = {
+  name: "Player 1",
+  chips: 500,
+};
 // set win boolean
 let didWin = null;
 
-// LOAD PLAYER DATA each render
-player = JSON.parse(localStorage.getItem("playerInfo"));
 
 function newGame() {
-  player = {
-    name: user,
-    chips: 500,
-  };
+  player.chips = 500
   resetGame();
   startGame()
   newGameBtn.classList.remove("show");
-  playerEl.textContent = `${player.name}: $${player.chips}`;
+  playerEl.textContent = `${user}: $${player.chips}`;
 }
 
 let playerEl = document.getElementById("player-el");
@@ -49,8 +47,6 @@ document.getElementById("stand-btn").disabled = true;
 document.getElementById("reset-btn").disabled = true;
 
 function startGame() {
-  // set player name from URL
-  player.name = user;
 
   if (player.chips < 0) {
     // if player refreshes the page on new game screen
@@ -69,18 +65,15 @@ function startGame() {
 
 function getPoints() {
   if (didWin === true) {
-    playerEl.textContent = `${player.name}: $${(player.chips += 50)}`;
+    playerEl.textContent = `${user}: $${(player.chips += 50)}`;
     document.getElementById("player-el").classList.add("shake");
     // reset win boolean
     didWin = null;
   } else if (didWin === false) {
-    playerEl.textContent = `${player.name}: $${(player.chips -= 50)}`;
+    playerEl.textContent = `${user}: $${(player.chips -= 50)}`;
     document.getElementById("player-el").classList.add("shake");
     didWin = null;
   }
-
-  // SAVE PLAYER INFO on points update
-  localStorage.setItem("playerInfo", JSON.stringify(player));
 }
 
 function stand() {

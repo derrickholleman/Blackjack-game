@@ -8,11 +8,10 @@ let player = {
 // set win boolean
 let didWin = null;
 
-
 function newGame() {
-  player.chips = 500
+  player.chips = 500;
   resetGame();
-  startGame()
+  startGame();
   newGameBtn.classList.remove("show");
   playerEl.textContent = `${user}: $${player.chips}`;
 }
@@ -31,10 +30,6 @@ function getRandomCard1Through10() {
 let cardHolder = [getRandomCard(), getRandomCard1Through10()];
 let playerTotal = cardHolder.reduce((a, b) => a + b);
 
-// get dealer cards
-let dealerCards = [getRandomCard(), getRandomCard(), getRandomCard()];
-let dealerTotal = dealerCards.reduce((a, b) => a + b);
-
 let message = document.getElementById("message-el");
 let displayPlayerTotal = document.getElementById("sum-el");
 let displayCards = document.getElementById("cards-el");
@@ -47,10 +42,9 @@ document.getElementById("stand-btn").disabled = true;
 document.getElementById("reset-btn").disabled = true;
 
 function startGame() {
-
   if (player.chips < 0) {
     // if player refreshes the page on new game screen
-    message.textContent = "Out of money!  Click 'New Game' to play again!" ;
+    message.textContent = "Out of money!  Click 'New Game' to play again!";
     document.getElementById("reset-btn").disabled = true;
     document.getElementById("newCard-btn").disabled = true;
     document.getElementById("stand-btn").disabled = true;
@@ -60,6 +54,28 @@ function startGame() {
     document.getElementById("player-el").classList.add("show");
 
     renderGame();
+  }
+}
+
+// get dealer cards
+let dealerCards;
+let dealerTotal;
+function getDealerCards() {
+  dealerCards = [getRandomCard(), getRandomCard(), getRandomCard()];
+  dealerTotal = dealerCards.reduce((a, b) => a + b);
+
+  if (dealerTotal <= 15) {
+    dealerCards.push(getRandomCard());
+    dealerTotal = dealerCards.reduce((a, b) => a + b);
+  }
+  if (dealerTotal <= 15) {
+    dealerCards.push(getRandomCard());
+    dealerTotal = dealerCards.reduce((a, b) => a + b);
+  }
+  // take away a card if dealer total ridiculously high
+  if (dealerTotal >= 25) {
+    dealerCards.pop();
+    dealerTotal = dealerCards.reduce((a, b) => a + b);
   }
 }
 
@@ -134,6 +150,8 @@ function renderGame() {
     document.getElementById("stand-btn").disabled = true;
     document.getElementById("reset-btn").disabled = false;
   }
+
+  getDealerCards();
 
   // display cards array as text
   displayCards.textContent = `Current Cards: ${cardHolder.map(
@@ -213,22 +231,7 @@ function resetGame() {
   playerTotal = cardHolder.reduce((a, b) => a + b);
 
   // reset dealer cards
-  dealerCards = [getRandomCard(), getRandomCard(), getRandomCard()];
-  dealerTotal = dealerCards.reduce((a, b) => a + b);
-
-  if (dealerTotal <= 15) {
-    dealerCards.push(getRandomCard());
-    dealerTotal = dealerCards.reduce((a, b) => a + b);
-  }
-  if (dealerTotal <= 15) {
-    dealerCards.push(getRandomCard());
-    dealerTotal = dealerCards.reduce((a, b) => a + b);
-    // take away a card if dealer total ridiculously high
-  }
-  if (dealerTotal >= 25) {
-    dealerCards.pop();
-    dealerTotal = dealerCards.reduce((a, b) => a + b);
-  }
+  getDealerCards();
 
   // disable stand button directly after reset
   document.getElementById("stand-btn").disabled = true;
